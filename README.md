@@ -4,7 +4,7 @@ Implements initial version of $ZkNoid token
 
 - Ticker: `$ZkNoid`
 - Decimals: `9`
-- Supply 1_000_000_000.0 tokens
+- Supply: `1_000_000_000.0 tokens`
 
 ## How to build
 
