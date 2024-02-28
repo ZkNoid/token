@@ -34,8 +34,6 @@ export class ZkNoidTokenContract extends SmartContract {
   @method init() {
     super.init();
     this.account.tokenSymbol.set(this.SYMBOL);
-    this.account.tokenSymbol.set(this.SYMBOL);
-
     this.totalAmountInCirculation.set(UInt64.zero);
   }
 
