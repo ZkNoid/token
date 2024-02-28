@@ -1,3 +1,3 @@
-import { Add } from './Add.js';
+import { ZkNoidTokenContract } from './ZkNoidTokenContract.js';
 
-export { Add };
+export { ZkNoidTokenContract };
