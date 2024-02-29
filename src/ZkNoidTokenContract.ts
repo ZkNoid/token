@@ -10,10 +10,14 @@ import {
   Signature,
 } from 'o1js';
 
+const SYMBOL = 'ZkNoid';
+const DECIMALS = 9n;
+const SUPPLY = UInt64.from(1_000_000_000n * 10n ** DECIMALS);
+
 export class ZkNoidTokenContract extends SmartContract {
   SYMBOL = 'ZkNoid';
   DECIMALS = 9n;
-  SUPPLY = UInt64.from(1_000_000_000n * 10n ** this.DECIMALS);
+  SUPPLY = UInt64.from(1_000_000_000n * 10n ** DECIMALS);
 
   @state(UInt64) totalAmountInCirculation = State<UInt64>();
 
@@ -33,7 +37,7 @@ export class ZkNoidTokenContract extends SmartContract {
 
   @method init() {
     super.init();
-    this.account.tokenSymbol.set(this.SYMBOL);
+    this.account.tokenSymbol.set(SYMBOL);
     this.totalAmountInCirculation.set(UInt64.zero);
   }
 
@@ -48,7 +52,7 @@ export class ZkNoidTokenContract extends SmartContract {
     let newTotalAmountInCirculation = totalAmountInCirculation.add(amount);
 
     newTotalAmountInCirculation.value.assertLessThanOrEqual(
-      this.SUPPLY.value,
+      SUPPLY.value,
       "Can't mint more than the total supply"
     );
 
