@@ -1,6 +1,10 @@
-# Mina zkApp: Zknoid Token
+# Zknoid Token
 
-This template uses TypeScript.
+Implements initial version of $ZkNoid token
+
+- Ticker: `$ZkNoid`
+- Decimals: `9`
+- Supply: `1_000_000_000.0 tokens`
 
 ## How to build
 
