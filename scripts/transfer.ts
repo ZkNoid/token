@@ -48,13 +48,10 @@ const token = new FungibleToken(
 );
 
 console.log('Token address:', token.address.toBase58());
+
 const nonce = await getInferredNonce(feepayer.publicKey.toBase58());
 
-console.log(
-  'Minting new tokens to self.',
-);
-
-const mintTx = await Mina.transaction(
+const transferTx = await Mina.transaction(
   {
     sender: admin.publicKey,
     fee,
@@ -62,11 +59,17 @@ const mintTx = await Mina.transaction(
   },
   async () => {
     AccountUpdate.fundNewAccount(feepayer.publicKey, 1);
-    await token.mint(feepayer.publicKey, new UInt64(100e9));
+    await token.transfer(
+      feepayer.publicKey,
+      PublicKey.fromBase58(
+        'B62qpjxUpgdjzwQfd8q2gzxi99wN7SCgmofpvw27MBkfNHfHoY2VH32'
+      ),
+      new UInt64(100e9)
+    );
   }
 );
 
-await mintTx.prove();
-mintTx.sign([feepayer.privateKey]);
-const mintTxResult = await mintTx.send().then((v) => v.wait());
-console.log('Mint tx:', mintTxResult.hash);
+await transferTx.prove();
+transferTx.sign([feepayer.privateKey]);
+const transferTxResult = await transferTx.send().then((v) => v.wait());
+console.log('Transfer tx:', transferTxResult.hash);
