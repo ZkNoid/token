@@ -11,33 +11,19 @@
     "zkapp"
   ],
   "type": "module",
-  "main": "build/src/index.js",
-  "types": "build/src/index.d.ts",
+  "main": "target/index.js",
+  "types": "target/index.d.ts",
+  "repository": "github:ZkNoid/token",
   "scripts": {
-    "build": "tsc",
-    "buildw": "tsc --watch",
-    "coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
-    "format": "prettier --write --ignore-unknown **/*",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "testw": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
-    "lint": "npx eslint src/* --fix"
-  },
-  "devDependencies": {
-    "@babel/preset-env": "^7.16.4",
-    "@babel/preset-typescript": "^7.16.0",
-    "@types/jest": "^27.0.3",
-    "@typescript-eslint/eslint-plugin": "^5.5.0",
-    "@typescript-eslint/parser": "^5.5.0",
-    "eslint": "^8.7.0",
-    "eslint-plugin-o1js": "^0.4.0",
-    "jest": "^27.3.1",
-    "prettier": "^2.3.2",
-    "ts-jest": "^27.0.7",
-    "typescript": "^4.7.2",
-    "o1js": "0.16.*"
-
+    "task": "node --enable-source-maps --no-warnings= --loader ts-node/esm",
+    "test": "npm run task -- --test FungibleToken.test.ts",
+    "build": "tsc"
   },
   "peerDependencies": {
-    "o1js": "0.16.*"
+    "o1js": "^1.1.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
   }
 }
